@@ -1,0 +1,407 @@
+\documentclass[11pt,titlepage]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{setspace}
+\usepackage{amsmath}
+\singlespacing
+
+<<setup,eval=TRUE,include=TRUE,cache=FALSE,echo=FALSE,results='asis',cache.path='cachebudg/budg-'>>=
+library(knitr)
+opts_chunk$set(fig.path='figurebudg/budg-', fig.align='center', fig.show='hold',cache.path='cachebudg/budg-')
+opts_chunk$set(concordance=TRUE)
+
+datadir <- "/ccbudget/"
+setwd(datadir)
+
+load("workspace_20131022.Rdata")
+@
+
+\begin{document}
+
+\title{Anatomy of a Community College Budget}
+\author{Peter M. Crosta\\
+Community College Research Center\\
+Teachers College, Columbia University}
+\date{\today}
+
+\maketitle
+
+% \begin{abstract}
+% This paper offers a rare look at the flow of revenues to expenses in a community college.
+% \end{abstract}
+\doublespace
+\section{Introduction}
+Community colleges are under a lot of pressure to do more with less. Much of the recent policy focus is on efficiency: producing more and/or better output while keeping inputs constant or increasing output at a faster rate than increasing expenditures. Quite absent from the literature on efficiency is a recognition that colleges operate on a budget that ultimately must be allocated to several different spending units. That is, college leadership has the challenge of allocating the school's resources in a way that results in optimal output. The mechanisms associated with budgeting, such as the flows of revenues and expenditures, are rarely discussed in detail outside of some acknowledgement that more students means more revenue. The discussions surrounding efficiency require a better understanding of the sources and destinations of funds used in the educational production process. It is within these constraints that college officers must act and where the realities of fiscal constraints become apparent.
+
+In this essay, I describe the result of resource allocation decisions made by a single college over three years. With data obtained from a college's general ledger, we have an incredibly detailed picture of the revenues and charges made by the institution. We note how amounts change over a three-year period, and we compare these with the publicly available data from the Integrated Postsecondary Education Database (IPEDS). The remainder of the paper is outlined as follows: first, we describe the data sets used in the analysis. Then we describe the components of revenues and expenditures from both the perspective of the college ledger and the perspective of IPEDS. Third, we provide an overview of how funds flow from revenue units to expenditure units. The main goal is for researchers and other higher education officials to gain an understanding of how colelge budgets are organized. 
+
+\section{Data}
+
+This paper draws upon a multiple sources of data related to a single community college in the southeastern United States.\footnote{For privacy reasons, no additional information about the institution will be provided.} The first data set comes from the college's financial ledger and includes an account of every expense made by the institution over the three academic years, 2008-09, 2009-10, and 2010-11. Each expense made by the college is represented by a single line on the ledger. The expense's account number reveals several pieces of information related to the charge. For example, it includes the source of revenue revenue, the broad purpose, and object label, and a unit description (all of these will be defined in more detail later). In addition, the ledger contains the dollar amount of the charge.
+
+The second data set comes from the United States Department of Education's Integrated Postsecondary Education Data System (IPEDS) through data collected by the Delta Cost Project.\footnote{Delta Cost Project data were obtained from \url{http://nces.ed.gov/ipeds/deltacostproject/.} Since the Project only includes data through 2009-10 school year, we obtained the 2010-11 data directly from the IPEDS database. However, all IPEDS revenue and expense definitions ultimately follow those defined by the Delta Cost Project.} This annual survey of postsecondary institutions includes detailed data on revenues and expenditures in addition to the oft-cited metrics related to enrollments and graduation rates. This study includes IPEDS data since it is the publicly available data that are used to describe financial patterns in higher education. IPEDS data serve as useful contrast so that we can better understand how the viewpoint from the federal government and public compares to the viewpoint of a college president and budget officer.
+
+The following sections describe the various data components that illustrate the revenues and expenditures of the college. Section~\ref{secrev} discusses revenues and Section~\ref{secexp} describes expenses as categorized by purposes, objects, and units.
+
+\subsection{Revenue}\label{secrev}
+
+\subsubsection{College Ledger Revenue}
+College revenue refers to the funds received by the college that are used to fulfill its mission. From the college's perspective, there are three primary sources of revenue: state funds, county funds, and institutional funds. State funds are the largest category and come from a complex formula approved by the state legislature, which uses tuition and tax receipts to allocate funds to all of the state's colleges. The formula includes block grants for basic skills, and categorical allocations for certain areas of spending such as small business centers, equipment, and childcare. These funding levels are often determined by allocating a flat amount for each college and then weighting this value by enrollment. However, most of the formula funding is based on the number of students enrolled at the institution in curriculum and continuing education programs, or funding based on the number of full-time-equivalent [FTE] students. Importantly, all registration, tuition, and instructional fees and book replacement fines become state funds when collected by the institution and must be deposited to the state. This includes federal grant aid. The state collects these funds from all of its institutions and then redestributes according to the formula.
+
+Institutional funds are those that are acquired and controlled entirely by the local college, including loans, scholarships, endowments, trust and agency funds, auxiliary enterprises, student fees, and private and federal grants and contracts that are not processed through the state. Certain grants and contracts which may be awarded to colleges on an individual basis, such as research grants, Adult Basic Education special projects, construction grants, and other specific grants fall under this category rather than the state funds category.
+
+County funding is mandated by state law for the operation of the college's physical plant (alongside some state funds) and for services such as electricity. This broadly includes acquisition of land and erection of buildings, salaries and related expenses for custodial services, and insurance for buildings. The funds are appropriated to the college by the local tax-levying authority.
+
+The three aforementioned funding categories are further disaggregated using codes developed by the National Association of College and University Business Officers (NACUBO). These include \emph{capital outlays} for institutional and state funding for revenues marked specifically for plant use and \emph{current unrestricted, current restricted, and proprietary} for funding that has no limitations on use, some limitations on use, and those associated with auxiliary enterprises, respectively. We will consider seven revenue categories that come from interactions between the large categories and the NACUBO categories. These include: County Unrestricted, Institutional Capital, Institutional Proprietary, Institutional Restricted, Institutional Unrestricted, State Capital, and State Unrestricted.
+
+\subsubsection{IPEDS Revenue}
+The previous section described revenue from the college budget perspective, and this section describes revenue from IPEDS. The categories that comprise revenue in IPEDS are similar but different from those observed in the college's general ledger. There are several IPEDS revenue categories, but only a subset are relevant to our analysis here of a public two-year college. These include Tuition and Fees, State Revenue, Federal Revenue, Local Revenue, Other Revenue, and Private Revenue.
+
+Tuition and Fees include total revenue from tuition and fees (including student aid applied to tuition and fees). State Revenue includes revenues received by the institution through acts of a state legislative body (except grants and contracts and capital appropriations). Funds reported in this category are for meeting current operating expenses, not for specific projects or programs and revenues from state government agencies that are for training programs and similar activities. Federal Revenue includes funds from federal governmental agencies that are for training programs, research, or public service activities that are part of a federal government grant or contract. Federal Pell Grants are included in this revenue category.
+
+Local Revenue are from appropriations by a governmental entity below the state level, such as a county. These revenues include those that result from actions of local governments or citizens (e.g., referendum) that result in receipt by the institution of revenues based on collections of other taxes or resources (e.g., sales taxes or gambling taxes) as well as funds from local government agencies that are for training programs and similar activities that are part of local government contracts. Private Revenue comes from private donors and private contracts that are directly related to instruction, research, public service, or other institutional purposes.
+
+Other Revenue is a broad category that includes the total amount of revenue from hospitals, independent operations, investment income derived from the institution's investments and endowment funds, revenues from the sales of goods or services that are incidental to the conduct of instruction, research or public service, revenues from auxiliary enterprise operations or other self-supporting activities (e.g., residence halls, food services, student health service).
+
+It is clear that these data elements do not match the college ledger's revenue categories exactly. The federal government's attempt to standardize measures across institutions creates categories of revenue that are not always directly comparable to a college's internal financial needs. As reported below, this can sometimes lead to an inconsistent story when interpretating revenue trends over time.
+
+\subsubsection{Revenue Trends}
+<<revpct,eval=TRUE,include=TRUE,cache=TRUE,echo=FALSE,dependson=c("setup"),fig.align='center', fig.cap=paste0("Share of Revenue from College Ledger"),results='asis',cache.path='cachebudg/budg-',fig.pos='!htbp'>>=
+revdf <- melt(with(comb, tapply(AMOUNT,INDEX=list(FUNDfac,year), sum, na.rm=T)))
+colnames(revdf) <- c("RevenueSource", "Year", "Amount")
+revdf$FTE <- FTE[match(revdf$Year, names(FTE))]
+
+totrev <- with(revdf, tapply(Amount, Year, sum))
+revdf$Total <- totrev[match(revdf$Year, names(totrev))]
+revdf$Percent <- 100*revdf$Amount/revdf$Total
+
+qplot(Year, Percent, data = revdf, fill = RevenueSource, geom = "area")+scale_x_continuous("Year", breaks=c(2009, 2010,2011))+guides(fill=guide_legend(title="Revenue Source"))
+@
+
+As a descriptive starting point, we analyze the distribution of revenues and how this distribution has changed over our three years of data. Figures~\ref{fig:revpct} and \ref{fig:revpctipeds} demonstrate these trends for college ledger and IPEDS data, respectively. Due to differences in revenue classification, the images show slightly different pictures. The total revenues for each data set are not in fact equivalent. Total revenues from the college ledger in 2009, 2010, and 2011 were \$135,514,023, \$150,591,108, and \$134,044,796, respectively, whereas total revenues from IPEDS were \$136,689,086, \$149,994,577, and \$170,244,451. The college ledger data suggests an increase in reliance on state funding over time and a slight decrease in county funding, as a proportion of total revenues. Institutional funds largely remained steady. The plot from IPEDS suggests a slight narrowing of state revenue, an expansion in both federal and tuition revenues, and a shrinking of local revenues. These are two rather different interpretations of what is fundamentally the same revenue data. Data from IPEDS is useful for comparing numerous institutions that have different revenue and funding structures; receipts can be consistently categorized. However, data from the college ledger provides a more realistic view of the funds that a college president or budget officer has for allocation purposes. A simple example in this present case is to consider revenues from tuition and fees. The college under study has no ability to collect and use funds from tuition and fees, but rather it has to remit these to the state for allocation. The college is still being funded by the size of its student body, but the mechanism is not as direct. Therefore, the IPEDS tuition and fees category - that makes up almost one-quarter of college revenues according to IPEDS as seen in Figure~\ref{fig:revpctipeds} - does not actually make up one-quarter of college revenues.
+
+<<revpctipeds,eval=TRUE,include=TRUE,cache=TRUE,echo=FALSE,dependson=c("setup"),fig.align='center', fig.cap=paste0("Share of Revenue from IPEDS"),results='asis',cache.path='cachebudg/budg-',fig.pos='!htbp'>>=
+ipedsrev <- melt(ipeds.rev, id.vars=c("UNITID", "Year", "FTE"), value.name="Amount")
+colnames(ipedsrev)[4] <- "RevenueSource"
+ipedsrev$Amount[is.na(ipedsrev$Amount)] <- 0
+
+totrev <- with(ipedsrev, tapply(Amount, Year, sum))
+ipedsrev$Total <- totrev[match(ipedsrev$Year, names(totrev))]
+ipedsrev$Percent <- 100*ipedsrev$Amount/ipedsrev$Total
+
+qplot(Year, Percent, data = ipedsrev, fill = RevenueSource, geom = "area")+scale_x_continuous("Year", breaks=c(2009, 2010,2011))+guides(fill=guide_legend(title="Revenue Source"))
+@
+
+
+<<revenue,eval=TRUE,include=TRUE,cache=TRUE,echo=FALSE,dependson=c("setup"),fig.align='center', fig.cap=paste0("Revenues (bottom) and Revenues by FTE (top) from College Ledger"),results='asis',cache.path='cachebudg/budg-',fig.pos='!htbp'>>=
+library(xtable)
+library(RColorBrewer)
+library(ggplot2)
+library(reshape2)
+library(scales)
+library(grid)
+library(gridExtra)
+
+## get collapsed dataframe 
+revdf <- melt(with(comb, tapply(AMOUNT,INDEX=list(FUNDfac,year), sum, na.rm=T)))
+colnames(revdf) <- c("RevenueSource", "Year", "Amount")
+revdf$FTE <- FTE[match(revdf$Year, names(FTE))]
+
+revdf2 <- revdf 
+revdf2$Amount <- revdf2$Amount/revdf2$FTE
+revdf$fte <- "Total"
+revdf2$fte <- "Per FTE"
+revdf2 <- rbind(revdf,revdf2)
+ggplot(data=revdf2,aes(x=Year,y=Amount,colour=RevenueSource)) +
+      geom_line(aes(linetype=RevenueSource), size=1.3) + 
+      scale_y_continuous(labels = dollar)+scale_x_continuous("Year", breaks=c(2009, 2010,2011))+
+      facet_wrap(~ fte, ncol = 1, scales = "free_y")+
+      guides(colour=guide_legend(title="Revenue\nSource",nrow=2,keywidth=3), linetype=guide_legend(title="Revenue\nSource",nrow=2,keywidth=3))+theme(legend.position = "bottom")
+@
+
+Next, we turn to trends in terms of dollar amounts. Figure~\ref{fig:revenue} displays revenue amounts by ledger category over three years. There are three items worth noticing about the revenue trends. First, although the State Unrestricted (top line) spending has been increasing overall, it appears flatter when adjusting for the corresponding increase in enrollment (about 14,000 to 16,000 over the three-year period). The second largest revenue category, Institutional Capital, increased from 2009 to 2010 and then decreased from 2010 to 2011. This suggests that spending on the college's capital improvement projects is not monotonic over time, as we might expect. Third, County Unrestricted funds are decreasing over time, and decreasing faster when adjusting for increasing FTE. There are numerous potential reasons for this trend. For example, the college could be improving its energy efficiency, leading it to charge less against this fund. Alternatively, it could reflect local voting behavior that affects how funds are allocated to the community college.\footnote{The college under study has in fact embarked on an energy efficiency reform that could have resulted in substantial energy savings.}
+
+<<ipeds,eval=TRUE,include=TRUE,cache=TRUE,echo=FALSE,dependson=c("setup"),fig.align='center', fig.cap=paste0("Revenues (bottom) and Revenues by FTE (top) from IPEDS"),results='asis',cache.path='cachebudg/budg-',fig.pos='!htbp'>>=
+ipedsrev <- melt(ipeds.rev, id.vars=c("UNITID", "Year", "FTE"), value.name="Amount")
+colnames(ipedsrev)[4] <- "RevenueSource"
+ipedsrev$Amount[is.na(ipedsrev$Amount)] <- 0
+
+ipedsrev2 <- ipedsrev 
+ipedsrev2$Amount <- ipedsrev2$Amount/ipedsrev$FTE
+ipedsrev$fte <- "Total"
+ipedsrev2$fte <- "Per FTE"
+ipedsrev2 <- rbind(ipedsrev2,ipedsrev)
+ggplot(data=ipedsrev2,aes(x=Year,y=Amount,colour=RevenueSource)) +
+      geom_line(aes(linetype=RevenueSource), size=1.3) + 
+      scale_y_continuous(labels = dollar)+scale_x_continuous("Year", breaks=c(2009, 2010,2011))+
+      facet_wrap(~ fte, ncol = 1, scales = "free_y")+
+      guides(colour=guide_legend(title="Revenue\nSource",nrow=2,keywidth=3), linetype=guide_legend(title="Revenue\nSource",nrow=2,keywidth=3))+theme(legend.position = "bottom")
+@
+
+We can also compare these revenue sources with IPEDS to see if the same trends are appearing in the data collected by the federal government that are used by numerous researchers. As discussed, the IPEDS categories seen in Figure~\ref{fig:ipeds} are different from the ones used internally by the college in Figure~\ref{fig:revenue}. However, we do see some familiar patterns. First, revenues from the state are the largest and present an increasing trend from 2009 to 2011. When adjusted for enrollment, the trend first decreases and then increases. It is difficult to compare this directly to the state appropriations identified in Figure~\ref{fig:revenue}. According to IPEDS, if tuition or fees are remitted to the state as an offset to the state appropriation, the total of such tuition or fees are deducted from the total state appropriation and added to the total for tuition and fees. In the IPEDS plot, we do see the same pattern for state funds and tuition and fees, which is expected under these instructions. Looking at revenues from government grants and contracts, there is a sharp increase seen in both panels. As also indicated by the college's ledger, we see a decreasing pattern in local or county-derived revenue. Similarly, the slowly increasing and sharply decreasing pattern exhibited by other revenue mirrors the institutional capital outlays in Figure~\ref{fig:revenue}.
+
+Although there are only three data points for each revenue source to identify trends, it is instructive to note the similarities and differences across data sources.  Further, the trend in institutional capital outlays reminds us how a single year's total and adjusted revenues - in addition to year-to-year changes of these amounts - can be impacted by a large need in one year. It is not clear how we should think about this type of long-term investment in public education infrastructure or how we should include it in analyses of revenue.
+
+\subsection{Expenditures}\label{secexp}
+\subsubsection{College Ledger Expenses}
+College expenditures refer to all charges made against the college's accounts. There are several broad categories, or purpose codes, that the college uses to organize its expenses. There are eight purpose codes that capture the primary uses of funds: academic support, capital, continuing education, curriculum instruction, institutional support, plant operations and maintenance, proprietary/other, and student support. We are missing information on the ninth purpose code, that is associated with student financial aid and scholarships. Academic support includes support services that directly assist the academic functions of the institution's primary instructional mission, such as library services, instructional resources and technology, academic administration, and curriculum development. Capital expenses are associated with large equipment, general contractors, and subcontractors as these are generally associated with a construction project that expands the institution's physical infrastructure (e.g., parking garages). 
+
+The continuing education category includes salaries and fringe benefits associated with instruction in non-credit programs such asadult education, basic skills, ESL, vocational, and occupational education. This also includes expenditures for small business centers, and local and regional capacity building activities. Curriculum instruction includes salaries and fringe benefits associated with providing credit-bearing courses, including developmental education, Institutional support expenses include management and administration of the entire institution, including executive management, financial services, general administration, college work study, and information systems. 
+
+Plant operations and maintenance are expenditures due to activities involving the operation and maintenance of the institution's physical plant. This includes service contracts and electricity as well as salaries and fringe for janitors and maintenance staff. The proprietary/other category reflects the costs of auxiliary enterprises, bookstore operations, food service, parking, and internal service funds. Finally, student support includes expenditures associated with the admissions office and registrar, counseling, career guidance, placement officers, placement testing, childcare, and financial aid administration.
+
+\subsubsection{IPEDS Expenses}
+In the previous section, we described broad categories of expenditures from the college budget perspective. This section describes seven expenditure categories from IPEDS: instruction, academic support, student services, institutional support, operations and maintenance, scholarships, and auxiliary enterprises. 
+
+Instruction captures expenses of the colleges, schools, departments, and other instructional divisions of the institution, including  general academic instruction, occupational and vocational instruction, community education, preparatory and adult basic education, and regular, special, and extension sessions (both credit and non-credit activities). Academic support includes retention, preservation, and display of educational materials (e.g., libraries), organized activities that provide support services to the academic functions of the institution, media such as audiovisual services, academic administration (e.g. academic deans), and course and curriculum development. Student services includes expenses associated with admissions, registrar activities, student activities, cultural events, student newspapers, intramural athletics, student organizations, supplemental instruction outside the normal administration, and student records. 
+
+Institutional support expenses includes the day-to-day operational support of the institution, such as general administrative services, executive-level activities, legal and fiscal operations, space management, employee personnel and records, purchasing and printing, and public relations and development. Operations and maintenance captures expenditures for operations established to provide service and maintenance related to campus grounds and facilities used for educational and general purposes, including utilities, fire protection, and property insurance. 
+
+Scholarships represent the amount of institutional spending on scholarships and fellowships outside of tuition and auxiliary enterprises discounts and allowances. Lastly, auxiliary enterprises expenses include those associated with the self-supporting operations of the institution, such as food service, student health services, college stores, and faculty and staff parking. 
+a
+The IPEDS categories for expenses track closer to the college ledger categories than do the categories for revenue. However, there are some noteworthy differences in these data sets. First, the college is careful to separate its credit and non-credit expenditures for instruction, whereas IPEDS combines both of these under the instructional expense category. Second, IPEDS includes expenses associated with scholarships, whereas we are missing the college ledger information that captures these expenses.
+
+\subsubsection{Purposes}
+<<purpose,eval=TRUE,include=TRUE,cache=TRUE,echo=FALSE,dependson=c("setup"),fig.align='center', fig.cap=paste0("Purposes (bottom) and Purposes by FTE (top) from College Ledger"),results='asis',cache.path='cachebudg/budg-',fig.pos='!htbp'>>=
+
+purpdf <- melt(with(comb, tapply(AMOUNT,INDEX=list(PUPRfac,year), sum, na.rm=T)))
+colnames(purpdf) <- c("Purpose", "Year", "Amount")
+purpdf$FTE <- FTE[match(purpdf$Year, names(FTE))]
+
+purpdf2 <- purpdf 
+purpdf2$Amount <- purpdf2$Amount/purpdf2$FTE
+purpdf$fte <- "Total"
+purpdf2$fte <- "Per FTE"
+purpdf2 <- rbind(purpdf,purpdf2)
+ggplot(data=purpdf2,aes(x=Year,y=Amount,colour=Purpose)) +
+      geom_line(aes(linetype=Purpose), size=1.3) + 
+      scale_y_continuous(labels = dollar)+scale_x_continuous("Year", breaks=c(2009, 2010,2011))+
+      facet_wrap(~ fte, ncol = 1, scales = "free_y")+
+      guides(colour=guide_legend(title="Purpose",nrow=3,keywidth=2), linetype=guide_legend(title="Purpose",nrow=3,keywidth=2))+theme(legend.position = "bottom")
+@
+
+We begin describing expenditure data by looking at trends in spending by purpose codes in both the college ledger and IPEDS data sets. It should be noted here that the total expenditures in each data set are not in fact equivalent. Total expenses from the college ledger in 2009, 2010, and 2011 were \$135,514,023, \$150,591,108, and \$134,044,796, respectively, whereas total expenditures from IPEDS were \$127,206,174, \$163,737,589, and \$171,572,300.\footnote{In the college ledger data set, revenues is equal to expenses. In the IPEDS data set, revenues exceed expenditures in 2009 and expenditures exceed revenues in 2010 and 2011. This illustrates the accounting difficulties encountered when working with the numerous expense and revenue variables in the IPEDS data.} Figure~\ref{fig:purpose} displays the three-year trend in expenditures of the purpose codes for the college. The largest expense is for curriculum instruction, and it is increasing during the three-year period. We also note an increase in capital expense in 2010 followed by a substantial decrease. Expenditures for institutional support (general administration) are the second largest non-capital category - the college spends about half as much per FTE student on this type of administration than it does on curriculum instruction, but one and one half times as much as it spends on continuing education. Notably, the trends for student support and academic support are decreasing or flat throughout the period.
+
+<<ipedspurp,eval=TRUE,include=TRUE,cache=TRUE,echo=FALSE,dependson=c("setup"),fig.align='center', fig.cap=paste0("Purposes (bottom) and Purposes by FTE (top) from IPEDS"),results='asis',cache.path='cachebudg/budg-',fig.pos='!htbp'>>=
+
+ipedsexp <- melt(ipeds.exp, id.vars=c("UNITID", "Year", "FTE"), value.name="Amount")
+colnames(ipedsexp)[4] <- "Purpose"
+ipedsexp$Amount[is.na(ipedsexp$Amount)] <- 0
+
+ipedsexp2 <- ipedsexp 
+ipedsexp2$Amount <- ipedsexp2$Amount/ipedsexp$FTE
+ipedsexp$fte <- "Total"
+ipedsexp2$fte <- "Per FTE"
+ipedsexp2 <- rbind(ipedsexp2,ipedsexp)
+ggplot(data=ipedsexp2,aes(x=Year,y=Amount,colour=Purpose)) +
+      geom_line(aes(linetype=Purpose), size=1.3) + 
+      scale_y_continuous(labels = dollar)+scale_x_continuous("Year", breaks=c(2009, 2010,2011))+
+      facet_wrap(~ fte, ncol = 1, scales = "free_y")+
+      guides(colour=guide_legend(title="Purpose",nrow=2,keywidth=3), linetype=guide_legend(title="Purpose",nrow=2,keywidth=3))+theme(legend.position = "bottom")
+
+@
+
+Figure~\ref{fig:ipedspurp} presents trends for several IPEDS expense categories. In the instruction category, there is no division between curriculum and continuing education, which is why it appears much larger than the curriculum instruction category in Figure~\ref{fig:purpose}. The IPEDS picture tells a similar story as the ledger picture regarding instructional expenditures and institutional support. However, the decline in spending on student services and academic support is not immediately visible.
+
+\subsubsection{Objects and Units}
+
+In the college ledger data set, we are able to disaggregate expenditure data using two additional levels. The levels are termed the object description and the unit description. There are about 160 unique objects each year and close to 500 units. Objects include general categories like “FT Faculty” whereas units include “Criminal Justice Technology”, the department where the full-time faculty salary charge was made. These levels provide a more in-depth look at spending patterns. Sometimes it is of interest to know how funds flow to a particular department, regardless of the use. Other times we may be interested in knowing how much the institution spends in total on items as simple as postage. Still, there may be use for knowing how much the institution spent on public relations (an object) in the geospatial technologies department (a unit). The number of objects and units is large enough such that we will not enumerate them all. However, we do highlight some of the larger expenses and some of the trends that emerge.
+
+<<objs,eval=TRUE,include=TRUE,cache=TRUE,echo=FALSE,dependson=c("setup"),results='asis',cache.path='cachebudg/budg-'>>=
+
+capwords <- function(s) { 
+  cap <- function(s) paste( toupper(substring(s,1,1)),
+           tolower(substring(s,2)), sep = "", collapse = " " )   
+          sapply(strsplit(s, split = " "), cap, USE.NAMES = !is.null(names(s))) }
+
+## Identify most frequent Object Descriptions.
+objfreq <- as.matrix(head(sort(table(capwords(comb$OBJECT.DESC[comb$year==2011])),decreasing=TRUE), 10))
+colnames(objfreq) <- "Frequency"
+print(xtable(objfreq, caption="Ten Most Frequent Expense Objects, 2011", label="tab:objs"), caption.placement="top", table.placement="!htbp")
+
+## Identify most expensive Object Descriptions.
+rndamt <- 100000
+obj.arg <- as.matrix(head(sort(with(comb[comb$year==2011,], tapply(X=AMOUNT,INDEX=capwords(OBJECT.DESC), FUN=function(x) round(sum(x,na.rm=T)/rndamt)*rndamt)), decreasing=TRUE),10))
+colnames(obj.arg) <- "Amount"
+obj.arg[,"Amount"] <- dollar(obj.arg[,"Amount"])
+print(xtable(obj.arg, caption="Ten Most Expensive Expense Objects, 2011", label="tab:objsarg", align="rr"), caption.placement="top", table.placement="!htbp")
+
+## Identify most frequent Unit Descriptions.
+objfreq <- as.matrix(head(sort(table(capwords(comb$UNIT.DESC[comb$year==2011])),decreasing=TRUE), 10))
+colnames(objfreq) <- "Frequency"
+print(xtable(objfreq, caption="Ten Most Frequent Unit Objects, 2011", label="tab:units"), caption.placement="top", table.placement="!htbp")
+
+## Identify most expensive Unit Descriptions.
+rndamt <- 10000
+obj.arg <- as.matrix(head(sort(with(comb[comb$year==2011,], tapply(X=AMOUNT,INDEX=capwords(UNIT.DESC), FUN=function(x) round(sum(x,na.rm=T)/rndamt)*rndamt)), decreasing=TRUE),10))
+colnames(obj.arg) <- "Amount"
+obj.arg[,"Amount"] <- dollar(obj.arg[,"Amount"])
+print(xtable(obj.arg, caption="Ten Most Expensive Unit Objects, 2011", label="tab:unitssarg"), caption.placement="top", table.placement="!htbp")
+
+## Identify largest single charges
+rndamt <- 10000
+chrg <- comb[comb$year==2011,][head(order(comb$AMOUNT[comb$year==2011], decreasing=TRUE),10),c("OBJECT.DESC", "UNIT.DESC", "AMOUNT")]
+chrg$OBJECT.DESC <- capwords(chrg$OBJECT.DESC)
+chrg$UNIT.DESC <- capwords(chrg$UNIT.DESC)
+chrg$AMOUNT <- dollar(round(chrg$AMOUNT/rndamt)*rndamt)
+colnames(chrg) <- c("Object", "Unit", "Amount")
+print(xtable(chrg, caption="Ten Largest Charges, 2011", label="tab:charges",align="rrrr"), include.rownames=FALSE, caption.placement="top", table.placement="!htbp")
+@
+
+First, we consider expense objects. Since there are so many unique objects, we summarize the ten most frequently charged objects in 2011 in Table~\ref{tab:objs}. These ten most frequent objects account for about 50 per cent of the total charges that year. From the table, it is clear that most common charges are associated with payroll: social security, retirement, insurance, and staff and faculty salaries. A second way to summarize the object-level data is to look at the dollar amount associated with each object. In Table~\ref{tab:objsarg}, we present the ten most expensive objects. These account for about 65 per cent of all college expenditures. As expected, the largest expenses are associated with full-time faculty, full-time professional staff, and part-time faculty salaries.
+
+Next, we consider expense units. As mentioned, there are many more units than objects, and thus aggregating categories results in fewer similarities than the object-level analysis. Still, we show the ten most frequent unit objects in Table~\ref{tab:units}. Leading the list are charges associated with longevity, which refers to social security contributions. Perhaps the dollar amounts associated with particular units is more informative. Table~\ref{tab:unitssarg} presents the ten most expensive unit objects. Here we see a \$4.7 million dollar student parking deck, \$3.7 million dollars of information technology expenses (across various departments), and \$3.6 million dollars in utilities expenses.
+
+Finally, Table~\ref{tab:charges} combines object and unit data and lists the ten largest charges in 2011. The largest single charges were made to contractors for building a new parking deck, an energy savings plan, custodial services, and a building renovation. The college spent over \$2.6 million dollars on electricity as well, which tends to be the largest single charge in other years. The bottom five entries in Table~\ref{tab:charges} are associated with faculty salaries in English, math, behavioral and social sciences, physical sciences, and information technology administration.
+
+\subsubsection{What next?}
+With data disaggregated at these levels, there are a number of analyses that would be interesting for researchers to pursue. Assuming that similar data could be obtained for more than three years, one avenue of study could focus on broader changes in the how the college organizes spending. For example, which accounts, units, and objects are growing and shrinking over time? How are state and federal policies driving these changes? How are macroeconomic factors and student composition related to expenditure changes? Can we detect spending changes across units that may have been masked by siloed departments? Perhaps a more general way to ask many of these questions is: What impacts the actual resource allocation decisions made by college leadership? To what incentives and policies are presidents responding? 
+
+A second line of research might link expenditure data to student progress and outcome measures. Although it is difficult to tie concurrent spending to any particular student's achievement record and it is known that students benefit from college spending over a multi-year horizon, there may be interesting insights that can be gleaned from a combination of expenditure and transcript data. For example, are particular investments in student services, technologies, or facilities associated with changes in student achievement? How do features and changes of resource allocation correlate with student progress and achievement measures? Or how does targeted spending impact outcomes?
+
+Lastly, ledger data can supplement program evaluation research to get better measures of costs associated with interventions. Cost-benefit and cost-effectiveness analyses require good estimates of incremental costs associated with reforms. Expenditure information from college ledgers can help ascertain better estimates of monetary costs and can also confirm that such expenditures were made upon reform adoption.
+
+\section{Flows Of Funds}
+A particularly useful feature of college ledger data is the inclusion of both a revenue and expenditure code for each charge.\footnote{This is not possible with IPEDS data.} This enables us to more closely track the flow of funds from a revenue source to the various objects and units. Simple diagrams can be constructed to highlight how revenues correspond to expenses. For example, Figure~\ref{fig:ftp} shows how funds are distributed to the broad expenditure purpose categories. In the figure, revenue categories are on the left and purpose categories are on the right; the size of each bar is proportional to the amount of revenue or expense it represents, and the widths of the paths linking revenues and expenditures are also proportional. Many of the components of the state's funding system can be easily read off the diagram. On bottom of Figure~\ref{fig:ftp}, we see plant operation and maintenance funded by county unrestricted funds. Most of the spending on curriculum instruction and continuing education comes from the state allocation, but the state funds also provide the bulk of academic, institutional, and student support.
+
+<<fundpurp,eval=FALSE,include=FALSE,cache=FALSE,echo=FALSE,dependson=c("setup"),results='asis',cache.path='cachebudg/budg-'>>=
+library(igraph)
+library(rCharts)
+
+budsank <- comb[comb$year==2011,c("FUND.DESC", "PURP.1.DESC", "AMOUNT")]
+budsank$FUND.DESC <- capwords(budsank$FUND.DESC)
+budsank$PURP.1.DESC <- capwords(budsank$PURP.1.DESC)
+edgelistWeight <- na.omit(melt(with(budsank, tapply(AMOUNT, INDEX=list(FUND.DESC,PURP.1.DESC), FUN=sum, na.rm=T))))
+colnames(edgelistWeight) <- c("source","target","value")
+sankeyPlot <- rCharts$new()
+sankeyPlot$setLib('~/working/rCharts_d3_sankey/libraries/widgets/d3_sankey')
+sankeyPlot$setTemplate(script = "~/working/rCharts_d3_sankey/libraries/widgets/d3_sankey/layouts/chart.html")
+sankeyPlot$set(
+  data = edgelistWeight,
+  nodeWidth = 25,
+  nodePadding = 15,
+  layout = 32,
+  width = 768,
+  height = 400
+)
+
+sankeyPlot$print(chartId = 'sankey')
+@
+
+\begin{figure}[!htbp]
+\centering
+\caption{Flow of Funds to Expenditure Purposes, 2011}
+\includegraphics[width=6in]{fund-to-purp2011.png}
+\label{fig:ftp}
+%\caption*{\emph{Note}: }
+\end{figure}
+
+Flow diagrams such as Figure~\ref{fig:ftp} provide a starting point to thinking about how a college might need to reallocate resources given changes in funding. For example, if state support decreases due to a legislative change of the funding formula, the college will have to either reduce the size of the instruction and support categories or find a alternative funding sources. There are any number of ways for a college to respond to shrinking state support by reorganizing instruction and support, but improving plant operations and maintenance - as a simple example - would have little impact as this is largely a county concern.
+
+<<fundobj,eval=FALSE,include=FALSE,cache=FALSE,echo=FALSE,dependson=c("setup"),results='asis',cache.path='cachebudg/budg-'>>=
+library(igraph)
+library(rCharts)
+
+allf <- data.frame(with(comb[comb$year==2011,], tapply(AMOUNT, FUND.DESC, sum)))
+colnames(allf) <- "value"
+allf$source <- "All"
+allf$target <- rownames(allf)
+row.names(allf) <- NULL 
+
+budsank <- comb[comb$year==2011,c("FUND.DESC", "OBJECT.DESC", "AMOUNT")]
+budsank$FUND.DESC <- capwords(budsank$FUND.DESC)
+budsank$OBJECT.DESC <- capwords(budsank$OBJECT.DESC)
+edgelistWeight <- na.omit(melt(with(budsank, tapply(AMOUNT, INDEX=list(FUND.DESC,OBJECT.DESC), FUN=sum, na.rm=T))))
+colnames(edgelistWeight) <- c("source","target","value")
+edgelistWeight<- edgelistWeight[which(edgelistWeight$value > sort(edgelistWeight$value, decreasing=TRUE)[50]),]
+edgelistWeight <- rbind(edgelistWeight, allf)
+edgelistWeight$source <- as.character(edgelistWeight$source)
+edgelistWeight$target <- as.character(edgelistWeight$target)
+edgelistWeight$value <- as.numeric(edgelistWeight$value)
+sankeyPlot <- rCharts$new()
+sankeyPlot$setLib('~/working/rCharts_d3_sankey/libraries/widgets/d3_sankey')
+sankeyPlot$setTemplate(script = "~/working/rCharts_d3_sankey/libraries/widgets/d3_sankey/layouts/chart.html")
+sankeyPlot$set(
+  data = edgelistWeight,
+  nodeWidth = 25,
+  nodePadding = 10,
+  layout = 32,
+  width = 1000,
+  height = 900
+)
+
+sankeyPlot$print(chartId = 'sankey')
+@
+
+\begin{figure}[!htbp]
+\centering
+\caption{Flow of Funds to 50 Highest Expenditure Objects, 2011}
+\includegraphics[width=6in]{fund-to-object2011.png}
+\label{fig:fto}
+%\caption*{\emph{Note}: }
+\end{figure}
+
+
+<<fundprupobj,eval=FALSE,include=FALSE,cache=FALSE,echo=FALSE,dependson=c("setup"),results='asis',cache.path='cachebudg/budg-'>>=
+library(igraph)
+library(rCharts)
+
+budsank <- comb[comb$year==2011,c("FUND.DESC", "PURP.1.DESC", "AMOUNT")]
+budsank$FUND.DESC <- capwords(budsank$FUND.DESC)
+budsank$PURP.1.DESC <- capwords(budsank$PURP.1.DESC)
+edgelistWeight <- na.omit(melt(with(budsank, tapply(AMOUNT, INDEX=list(FUND.DESC,PURP.1.DESC), FUN=sum, na.rm=T))))
+colnames(edgelistWeight) <- c("source","target","value")
+
+budsank <- comb[comb$year==2011,c("PURP.1.DESC", "OBJECT.DESC", "AMOUNT")]
+budsank$PURP.1.DESC <- capwords(budsank$PURP.1.DESC)
+budsank$OBJECT.DESC <- capwords(budsank$OBJECT.DESC)
+edgelistWeight2 <- na.omit(melt(with(budsank, tapply(AMOUNT, INDEX=list(PURP.1.DESC,OBJECT.DESC), FUN=sum, na.rm=T))))
+colnames(edgelistWeight2) <- c("source","target","value")
+edgelistWeight2<- edgelistWeight2[which(edgelistWeight2$value > sort(edgelistWeight2$value, decreasing=TRUE)[50]),]
+edgelistWeight <- rbind(edgelistWeight, edgelistWeight2)
+edgelistWeight$source <- as.character(edgelistWeight$source)
+edgelistWeight$target <- as.character(edgelistWeight$target)
+edgelistWeight$value <- as.numeric(edgelistWeight$value)
+sankeyPlot <- rCharts$new()
+sankeyPlot$setLib('~/working/rCharts_d3_sankey/libraries/widgets/d3_sankey')
+sankeyPlot$setTemplate(script = "~/working/rCharts_d3_sankey/libraries/widgets/d3_sankey/layouts/chart.html")
+sankeyPlot$set(
+  data = edgelistWeight,
+  nodeWidth = 25,
+  nodePadding = 10,
+  layout = 32,
+  width = 1000,
+  height = 900
+)
+
+sankeyPlot$print(chartId = 'sankey')
+@
+
+\begin{figure}[!htbp]
+\centering
+\caption{Flow of Funds to 50 Highest Expenditure Objects through Purposes, 2011}
+\includegraphics[width=6in]{fund-to-purp-to-obj2011.png}
+\label{fig:ftpto}
+%\caption*{\emph{Note}: }
+\end{figure}
+
+We can also track how funds flow to individual expenditure objects from revenue sources. Since there are too many objects to report all of them, Figure~\ref{fig:fto} displays the flow from funds to the 50 highest expenditure objects (accounting for 87 per cent of spending). Starting at the top right and working our way down the figure, we clearly see state funds responsible for faculty and staff salaries as well as associated benefits such as retirement, medical insurance, and social security. Note that some county funds are used for professional staff members, but most is used to pay for service contracts, electricity, and other maintenance obligations. Finally, Figure~\ref{fig:ftpto} shows the flow of funds to these 50 highest expenditure objects through the purpose codes.
+
+
+\section{Conclusion and Next Steps}
+This study has provided an overview of the revenues, expenditures, and flows of one community college's budget. It is essential for individuals working with college costs and efficiency to understand what the educational inputs are and where the college spends money. It is also important to understand how measures taken from IPEDS do or do not map to measures that are actually relevant to the college budgeting process. 
+
+The data presented in this essay may change the way we think about efficiency and the educational production process. There is considerable pressure for colleges to become more efficient: to increase outcomes more than spending or to keep spending constant while improving outcomes. Given current spending, efficiency gains must be achieved not by increasing the amount of resources available to colleges, but by increasing the quality. But how do we measure quality? We cannot capture explicitly the quality of inputs and so we generally measure outputs and presume there is some relationship to input quality. 
+
+This line of thinking, however, does not address the issue of resources. Is improving community college outcomes a resource allocation challenge, a resource utilization challenge, or a resource magnitude challenge? If a resource allocation issue, perhaps we need to reorganize the college budget for the completion agenda. That is, there may not only be gains from shifting resource amounts among college units, but there could be gains from redefining or reorganizing the units that receive funding. In our Figures~\ref{fig:ftp} and \ref{fig:ftpto}, resource reallocation could be seen by changing the widths of paths to purpose or object codes (e.g., reducing spending on student services and increasing spending on FT faculty). Resource utilization challenges call for changes in quality, either quality of inputs or quality of processes. This is where most reform efforts have focused their energies: to get more output, colleges are improving the quality of the student experience, from advising to program structure. These types of changes may not be visible in our budget diagrams, as they are often held to be budget neutral. Resource magnitude challenges require revenues to increase, which is unlikely in a political environment where state legislatures are reducing higher education funding (something that in this state, directly effects college resources that are used for instruction and administration). In our flow diagrams, increasing resource magnitudes would require the size of several revenue and expense boxes to increase.
+
+Lastly, in an ideal world, new initiatives and reforms would explicitly acknowledge the college budget process instead of treating it as a black box. Philanthropic foundations, for example, should take care to better understand the funding realities that college budget officers face as the college takes on new challenges and responsibilities. In fact, serious attention should be given to the mechanisms associated with budgets, especially as they relate to college reforms.
+
+
+
+
+\end{document}
