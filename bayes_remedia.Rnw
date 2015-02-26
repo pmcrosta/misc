@@ -1,0 +1,160 @@
+\documentclass[12pt,letterpaper,oneside]{article}
+\usepackage{graphics}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{setspace}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\singlespacing
+
+\title{Bayesian Decision Theory and Multiple Measures}
+\author{Peter M Crosta \\
+Community College Research Center \\
+Teachers College, Columbia University \\
+\texttt{peter.crosta@columbia.edu}}
+\date{\today}
+
+\begin{document}
+%\maketitle
+
+\SweaveOpts{concordance=TRUE}
+
+\section{Introduction}
+This is an attempt to illustrate how Bayesian Decision Theory can be used to think about the decision to send a student to developmental education or to a college level class. The problem is that we do not know exactly which students to send where, and we have limited information to use. This very basic exercise develops a simple model and presents a simple empirical example. 
+
+\section{Theory}
+We start by considering that a certain percentage of students in the population requires remediation. This is our prior belief.
+\begin{align}
+\Pr(W_r)=0.65 \nonumber\\
+\Pr(W_c)=1-\Pr(W_r)=0.35 \label{eq:priors}
+\end{align}
+In general, 65\% of students should be sent to remediation and 35\% belong in college level. These prior values are either assumptions or are based on some expert judgment; they can change. If that is the only information we have, the decision would be to remediate if $\Pr(W_r)>\Pr(W_c)$, and our error would be min$[\Pr(W_r),\Pr(W_c)]$. So here we would remediate everyone and accept a 35\% error rate.
+
+However, we can do better. We know that the decision to send someone to remediation will either be the right decision or the wrong decision. We can assign values or costs to these choices and express them as a loss function or loss matrix $\lambda$. For example:
+\begin{center}
+  \begin{tabular}{ l | c | r }
+    $\lambda(\alpha_{i}, W_{i})$ & W$_{r}$ & W$_{c}$ \\ \hline
+    Remediate & 0 & 20 \\ \hline
+    Send to CLC & 10 & 0 \\ 
+    \hline
+  \end{tabular}
+\end{center}
+Here $\lambda(\alpha_i, W_i)$ represents the loss associated with a decision depending on the actual state. There is a loss of zero for sending a student to remediation if the student in fact needs remediation (True Positive) or sending a student to college level if in fact the student does not need remediation (True Negative). Costs are associated with underplacement (sending a student to remediation who should be in college level, False Positive, cost=20) and overplacement (sending a student to college level who should be in remediation, False Negative, cost=10). These costs, of course, can change.
+
+We can't get much further without knowing specific probabilities of misclassification. But we can proceed if we have some additional information or data on whether or not students should be sent to remediation. For example, we might have a placement test score, and we can assume or know some basic information about that test score. We can approximate the conditional densities of the test score (X) for each class. In this example, we assume scores are normally distributed and have different conditional means and standard deviations for remedial and college-level students. For example:
+\begin{align}
+\Pr(X | W_r) \sim \mathcal{N}(53,20) \nonumber\\
+\Pr(X | W_c) \sim \mathcal{N}(73,30) \label{eq:dens}
+\end{align}
+This says that the distribution of test score for students who need remediation is normal, centered at 53 with standard deviation 20. These numbers can be empirically derived or esimated, and they can be adjusted for simulations.
+
+Before proceeding, recall the rules of probability that allows us to derive the joint and total probabilities:
+\begin{align}
+\Pr(X,W_r)=\Pr(X | W_r)\Pr(W_r) \\ 
+\Pr(X,W_c)=\Pr(X | W_c)\Pr(W_c) \\
+\Pr(X)=\Pr(X | W_r)\Pr(W_r)+\Pr(X | W_c)\Pr(W_c)=\Pr(X,W_r)+\Pr(X,W_c) \label{eq:joints}
+\end{align}
+What we really want is an answer to the question, "For which test value does sending to remediation or college level minimize total risk?" This can be answered by combining the loss function and our probability distributions. For this we rely on a risk function, which ultimately is the sum of posterior probabilities weighted by the loss function. Define the total risk associated with choice i as:
+
+\begin{align}
+R(\alpha_i|X)=\sum_{j=1}^c{\lambda(\alpha_i | W_j)}\Pr(W_j|X) \label{eq:totalrisk}
+\end{align}
+This means that the risk associated with making decision $\alpha_i$ (where \emph{i} denotes remediation or college-level) given information X is the sum of the product of the loss function associated with the decision and the probability distribution of the decision given the information X. More specifically in our example, we might say that the risk of sending a student to remediation given a test score is the loss associated with a true positive times the probability that the student needs remediation given the test score plus the loss associated with a false positive times the probability that the student should be in college level given the test score. The same statement can be made for the risk of sending a student to college level.
+
+To determine an optimal test score cutoff for decision making that minimizes risk, we want to solve the following inequality for X:
+\begin{align}
+R(\alpha_c|X) \le R(\alpha_r|X) \label{eq:inequal}
+\end{align}
+Or, at what test score does the risk of sending a student to college-level minimize risk? This expands to:
+\begin{align}
+\lambda(\alpha_c,W_r)Pr(W_r|X)+\lambda(\alpha_c,W_c)Pr(W_c|X) \nonumber\\
+\le \lambda(\alpha_r,W_r)Pr(W_r|X)+\lambda(\alpha_r,W_c)Pr(W_c|X) \label{eq:expandinequal}
+\end{align}
+Some algebra gives us:
+\begin{align}
+[\lambda(\alpha_c,W_r)-\lambda(\alpha_r,W_r)]Pr(W_r|X) \le [\lambda(\alpha_r,W_c)-\lambda(\alpha_c,W_c)]Pr(W_c|X) \label{eq:scalepost}
+\end{align}
+Substituting the values from the loss function $\lambda$ reduces the inequality to:
+\begin{align}
+10\cdot\Pr(W_r|X)\le20\cdot\Pr(W_c|X) \label{eq:reduced}
+\end{align}
+Here it is easier to see the posteriors scaled by the loss differences. The terms $\Pr(W_r|X)$ and $\Pr(W_c|X)$ are posterior likelihoods that we estimate from Bayes rule:
+\begin{align}
+\Pr(W_i|X)=\frac{\Pr(X|W_i)\Pr(W_i)}{\Pr(X)} \label{eq:bayes}
+\end{align}
+
+\section{Solution}
+We can solve this problem numerically. Recall that 
+\begin{align}
+\Pr(X)=\Pr(X | W_r)\Pr(W_r) + \Pr(X | W_c)\Pr(W_c).
+\end{align} 
+Using the normal distribution density with \ref{eq:dens} and combining \ref{eq:bayes} and \ref{eq:reduced} and \ref{eq:joints} and \ref{eq:priors}, we have:
+
+\begin{align}
+\Pr(X)=0.65\cdot\frac{1}{20\sqrt{2\pi}}e^{-\frac{(X-53)^2}{2\cdot20^2}}+0.35\cdot\frac{1}{30\sqrt{2\pi}}e^{-\frac{(X-73)^2}{2\cdot30^2}} \label{eq:numeric}
+\end{align}
+Equation \ref{eq:numeric} is the denominator for the RHS of equation \ref{eq:bayes}. Each RHS term of equation \ref{eq:numeric} is a numerator in equation \ref{eq:bayes}. On an interval from 10 to 100, we have a solution at a test score of about 70. This means that under this model, to minimize risk or loss, students should be sent to remediation if they score below a 70 and sent to college level if they score above a 70. This reflects the fact that underplacements are weighted as a greater loss than overplacements. If we were modify the loss function so that underplacements are weighted as a loss equal to overplacements, the optimal cutoff score would increase (we would be OK with more underplacements compared to the base case and these will occur with a higher cutoff).
+
+
+% simulation of bayesian decision theory applied to placement test scores.
+% The college needs to send some students to remediation and others to college level.
+% There are costs associated with misplacement. The only information we have is some prior of
+% remediation need in the population, a loss function matrix, and conditional densities of placement
+% test scores for remediated and college level
+
+<<setup,include=FALSE,cache=FALSE,echo=FALSE>>=
+setwd('~/projects/NC/multmeas/dofile/')
+library(knitr)
+opts_chunk$set(fig.path='figure/bayes-', fig.align='center', fig.show='asis',cache.path='cache/dep-')
+
+P_remed=.65 ##prior
+P_clc=1-P_remed
+
+#loss function
+lambda=matrix(c(0,20,10,0),nrow=2,byrow=T,dimnames=list(c("remediate", "clc"), c("need_rem", "need_clc"))) ##prior
+
+
+#conditional test score densities
+#P(test score | needs remediation) ~ N(53,20)
+#P(test score | needs clc) ~ N(73,30)
+mean.rem <- 53 
+sd.rem <- 20
+mean.clc <- 73 
+sd.clc <- 30
+
+## Now for which test score can we send a student to clc while minimizing risk?
+## R(send to clc | test score) < R(send to remediate | test score)
+## reduces to 10*P(send to remediation | test) > 20*P(send to clc | test)
+
+## will have to iterate over test scores here, x
+x <- 5
+
+simres <- t(sapply(seq(from=10, to=100, by=3), FUN=function(x) {
+  p.x <- P_remed*dnorm(x, mean.rem, sd.rem) + P_clc*dnorm(x, mean.clc, sd.clc)
+  p.rem.x=P_remed*dnorm(x, mean.rem, sd.rem)/p.x
+  p.clc.x=P_clc*dnorm(x, mean.clc, sd.clc)/p.x
+  c(x, round(lambda["clc", "need_rem"]*p.rem.x,3),round(lambda["remediate", "need_clc"]*p.clc.x, 3))
+  #print(paste(x,round(lambda["clc", "need_rem"]*p.rem.x,3), round(lambda["remediate", "need_clc"]*p.clc.x, 3), sep=","))
+}))
+simres <- cbind(simres, simres[,2]-simres[,3])
+@
+
+\begin{figure}[h!]
+<<posterior,fig.width=6,fig.height=5,echo=FALSE,fig.keep='last',fig.show='asis',out.width='.8\\linewidth'>>=
+plot(x=simres[,1],y=simres[,2], xlim=c(10,100), ylim=range(simres[,2:4]), type='l', col="red", lty=1, xlab="Test score", ylab='Scaled Posterior')
+lines(x=simres[,1],y=simres[,3], col="blue", lty=2)
+lines(x=simres[,1],y=simres[,2]-simres[,3], lty=3)
+abline(v=simres[which.min(abs(simres[,4])),1])
+legend("bottomleft", legend=c('Remediate', 'CLC', 'Difference'), lty=c(1,2,3), col=c("red", "blue", "black"))
+@
+\includegraphics{Rplots}
+\caption{\label{fig:posterior}Scaled Posteriors}
+\end{figure}
+
+In Figure~\ref{fig:posterior} we show the scaled posteriors from evaulating equation \ref{eq:numeric} at several different test score values. Ther vertical line is drawn at a test score of 70, where the Remediate and CLC lines intersect. The black line shows that risk is equalized at a score of 70, and decreases at scores above 70.
+
+\section{Modifications}
+We can use this simple model to estimate how the cutoff score would change under different policies and different test score distributions. Alternatively, we could use empirical data on test scores with a known cutoff to determine how states or institutions differentially weight over- and under-placement. 
+
+\end{document}
